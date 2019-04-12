@@ -1,12 +1,12 @@
-// import { request } from 'api/apiClient';
-import data from './data';
+import { request } from 'api/apiClient';
 
 async function getServers() {
-  // const response = await request({ method: 'get', url: '/server' });
-  // const servers = response.data.servers.server;
-  // return { data: servers, error: null, status: response.status };
-  const servers = data.servers.server;
-  return { data: servers, error: null, status: 'ok' };
+  const response = await request({ method: 'get', url: '/server' });
+  console.log(response);
+  
+  const servers = response.data.servers.server;
+  // await new Promise(resolve => setTimeout(resolve, 1000));
+  return { data: servers, error: null, status: response.status };
 }
 
 export { getServers };
