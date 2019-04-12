@@ -3,6 +3,7 @@ import { IStorage } from 'upcloud';
 import { getStorages } from 'api/storage';
 import Card from 'components/Card';
 import styles from './styles';
+import Loader from 'components/Loader';
 
 const Storages = () => {
   const [storages, setStorages] = React.useState<IStorage[]>([]);
@@ -31,9 +32,13 @@ const Storages = () => {
       <Card>
         <Card.Head title='Storages'/>
         <Card.Content>
-          <ul>
-            {storagesList()}
-          </ul>
+          {storages.length > 0
+            ? <ul>{storagesList()}</ul>
+            :
+            <div style={{ margin: '0 auto', maxWidth: '128px' }}>
+              <Loader size='big' />
+            </div>
+          }
         </Card.Content>
       </Card>
     </div>

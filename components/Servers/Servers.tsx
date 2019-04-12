@@ -3,6 +3,7 @@ import { IServer } from 'upcloud';
 import { getServers } from 'api/server';
 import Card from 'components/Card';
 import ServerItem from './ServerItem';
+import Loader from 'components/Loader';
 
 const Servers = () => {
   const [servers, setServers] = React.useState<IServer[]>([]);
@@ -30,7 +31,13 @@ const Servers = () => {
       <Card>
         <Card.Head title='Servers'/>
         <Card.Content>
-          {serversList()}
+          {servers.length > 0
+            ? serversList() 
+            : 
+            <div style={{ margin: '0 auto', maxWidth: '128px' }}>
+              <Loader size='big' />
+            </div>
+          }
         </Card.Content>
       </Card>
     </div>
