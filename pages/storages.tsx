@@ -1,15 +1,16 @@
 import React from 'react';
 import Head from 'next/head';
+import Storages from 'components/Storages';
 
-const Storages = () => (
+const StoragesPage = () => (
   <>
     <Head>
       <title>UpCloud</title>
     </Head>
     <main>
-      Welcome to Storages
+      <Storages />
     </main>
   </>
 );
 
-export default Storages;
+export default StoragesPage;
