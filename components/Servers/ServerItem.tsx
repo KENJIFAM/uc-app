@@ -8,7 +8,9 @@ const ServerItem = ({ hostname, title, state }: IServer) => {
       <style jsx>{styles}</style>
 
       <div className='icon'>
-        <div className={`state ${state}`}></div>
+        <abbr title={state}>
+          <div className={`state ${state}`}></div>
+        </abbr>
       </div>
       
       <div className='content'>
