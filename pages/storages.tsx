@@ -5,7 +5,7 @@ import Storages from 'components/Storages';
 const StoragesPage = () => (
   <>
     <Head>
-      <title>UpCloud</title>
+      <title>Storages | UpCloud</title>
     </Head>
     <main>
       <Storages />

@@ -1,7 +1,8 @@
 import React from 'react';
 import { IServer } from 'upcloud';
 import { getServers } from 'api/server';
-import Card from './Card';
+import Card from 'components/Card';
+import ServerItem from './ServerItem';
 
 const Servers = () => {
   const [servers, setServers] = React.useState<IServer[]>([]);
@@ -19,13 +20,7 @@ const Servers = () => {
   const serversList = () => {
     return servers.map(server => (
       <Card.Section key={server.uuid}>
-        <div>
-          
-        </div>
-        <div>
-          <p>{server.title}</p>
-          <p>Hostname: <span>{server.hostname}</span></p>
-        </div>
+        <ServerItem { ...server }/>
       </Card.Section>
     ));
   };

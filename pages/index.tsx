@@ -5,7 +5,7 @@ import Servers from 'components/Servers';
 const Home = () => (
   <>
     <Head>
-      <title>UpCloud</title>
+      <title>Servers | UpCloud</title>
     </Head>
     <main>
       {/* TODO: render servers etc. ? */}
