@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import Welcome from 'components/Welcome';
+import Servers from 'components/Servers';
 
 const Home = () => (
   <>
@@ -9,7 +9,7 @@ const Home = () => (
     </Head>
     <main>
       {/* TODO: render servers etc. ? */}
-      <Welcome />
+      <Servers />
     </main>
   </>
 );
