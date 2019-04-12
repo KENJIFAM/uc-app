@@ -4,6 +4,7 @@ import css from 'styled-jsx/css';
 import globalStyles from './globalStyles';
 import styles from './styles';
 import Navbar from 'components/Navbar';
+import Link from 'next/link';
 
 // some custom styles for header wrapper
 const headerWrapperCss = css.resolve`
@@ -25,11 +26,15 @@ class Layout extends React.Component {
 
         <header className="app-header">
           <Wrapper className={headerWrapperCss.className}>
-            <img
-              className="app-logo"
-              src="/static/upcloud-logo.svg"
-              alt="UpCloud logo"
-            />
+            <Link href='/'>
+              <a>
+                <img
+                  className="app-logo"
+                  src="/static/upcloud-logo.svg"
+                  alt="UpCloud logo"
+                />
+              </a>
+            </Link>
             <nav className="app-nav">
               <Navbar />
             </nav>
