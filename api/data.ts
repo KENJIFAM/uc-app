@@ -47,25 +47,25 @@ const storages: {storage: IStorage[]} = {
       size: 150,
       title: 'root',
       type: 'backup',
-      uuid: '1'
+      uuid: '2'
     },
     {
       size: 10,
       title: 'traffik.ajk',
       type: 'backup',
-      uuid: '1'
+      uuid: '3'
     },
     {
       size: 25,
       title: 'uk-lon1',
       type: 'normal',
-      uuid: '1'
+      uuid: '4'
     },
     {
       size: 29,
       title: 'win-storage',
       type: 'template',
-      uuid: '1'
+      uuid: '5'
     },
   ]
 };

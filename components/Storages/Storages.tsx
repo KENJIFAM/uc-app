@@ -1,7 +1,8 @@
 import React from 'react';
-import Card from './Card';
 import { IStorage } from 'upcloud';
 import { getStorages } from 'api/storage';
+import Card from 'components/Card';
+import styles from './styles';
 
 const Storages = () => {
   const [storages, setStorages] = React.useState<IStorage[]>([]);
@@ -19,7 +20,8 @@ const Storages = () => {
   const storagesList = () => {
     return storages.map(storage => (
       <li key={storage.uuid}>
-        <p>{storage.title} <span>({storage.size} GB)</span></p>
+        <style jsx>{styles}</style>
+        <h3>{storage.title} <span>({storage.size} GB)</span></h3>
       </li>
     ));
   };
