@@ -11,7 +11,7 @@ const styles = css`
 
   .app-header {
     background: #fff;
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
 
   .app-logo {
