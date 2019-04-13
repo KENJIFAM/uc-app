@@ -1,11 +1,11 @@
 import React from 'react';
 import { IServer } from 'upcloud';
-import styles from './styles';
+import { serverItemStyles } from './styles';
 
 const ServerItem = ({ hostname, title, state }: IServer) => {
   return (
     <div className='item'>
-      <style jsx>{styles}</style>
+      <style jsx>{serverItemStyles}</style>
 
       <div className='icon'>
         <abbr title={state}>
