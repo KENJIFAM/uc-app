@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Servers from 'components/Servers';
+import withAuth from 'components/withAuth';
 
 const Home = () => (
   <>
@@ -14,4 +15,4 @@ const Home = () => (
   </>
 );
 
-export default Home;
+export default withAuth(Home);

@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Storages from 'components/Storages';
+import withAuth from 'components/withAuth';
 
 const StoragesPage = () => (
   <>
@@ -13,4 +14,4 @@ const StoragesPage = () => (
   </>
 );
 
-export default StoragesPage;
+export default withAuth(StoragesPage);
