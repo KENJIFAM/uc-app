@@ -6,6 +6,7 @@ export interface IServer {
 }
 
 export interface IStorage {
+  access: string;
   size: number;
   title: string;
   type: 'backup' | 'normal' | 'template';

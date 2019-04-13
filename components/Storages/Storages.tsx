@@ -5,12 +5,14 @@ import Card from 'components/Card';
 import Loader from 'components/Loader';
 import { storageListStyles, storageHeadStyles } from './styles';
 import { titleCompare } from 'utils/compare';
+import RadioGroup from 'components/RadioGroup';
 
 const Storages = () => {
   const [storages, setStorages] = React.useState<IStorage[]>([]);
   const [sortedStorages, setSortedStorages] = React.useState<IStorage[]>([]);
   const [titleAsc, setTitleAsc] = React.useState<number>(1);
   const [sizeAsc, setSizeAsc] = React.useState<number>(0);
+  const [filter, setFilter] = React.useState<string>('Private');
 
   const fetchStorages = async () => {
     const storages = await getStorages();
@@ -59,34 +61,50 @@ const Storages = () => {
     }
   };
 
-  const storagesList = () => {
-    return sortedStorages.map(storage => (
-      <li key={storage.uuid}>
-        <style jsx>{storageListStyles}</style>
-        <h3>{storage.title} <span>({storage.size} GB)</span></h3>
-      </li>
-    ));
+  const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setFilter(event.target.value);
+
+  const storagesList = () => {    
+    return sortedStorages
+      .filter(storage => filter === 'All'
+        ? storage
+        : storage.access === filter.toLowerCase()
+      )
+      .map(storage => (
+        <li key={storage.uuid}>
+          <style jsx>{storageListStyles}</style>
+          <h3>{storage.title} <span>({storage.size} GB)</span></h3>
+        </li>
+      ));
   };
+
+  const storagesHead = () => (
+    <div className='storages-option'>
+      <style jsx>{storageHeadStyles}</style>
+      <div className='storages-sort'>
+        <h4 className={setClassName(titleAsc)} onClick={() => sortTitle()}>
+          TITLE
+        </h4>
+        <h4 className={setClassName(sizeAsc)} onClick={() => sortSize()}>
+          SIZE
+        </h4>
+      </div>
+      <div className='storages-filter'>
+        <RadioGroup
+          name='filter'
+          options={['All', 'Public', 'Private']}
+          checked={filter}
+          onChange={onChangeHandle}
+        />
+      </div>
+    </div>
+  );
 
   return (
     <div style={{ margin: '1rem auto' }}>
       <Card>
         <Card.Head title='Storages'>
-          <div className='storages-sort'>
-            <style jsx>{storageHeadStyles}</style>
-            <h4
-              className={setClassName(titleAsc)}
-              onClick={() => sortTitle()}
-            >
-              TITLE
-            </h4>
-            <h4
-              className={setClassName(sizeAsc)}
-              onClick={() => sortSize()}
-            >
-              SIZE
-            </h4>
-          </div>
+          {storagesHead()}
         </Card.Head>
         <Card.Content>
           {storages.length > 0

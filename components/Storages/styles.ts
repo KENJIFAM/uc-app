@@ -17,8 +17,9 @@ const storageHeadStyles = css`
 
   .storages-sort {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    margin-bottom: 5px;
 
     h4 {
       line-height: 1.3;
@@ -46,7 +47,7 @@ const storageHeadStyles = css`
   }
 
   @media screen and (max-width: 319px) {
-    .storages-sort {
+    .storages-option {
       display: none;
     }
   }
