@@ -5,6 +5,7 @@ import globalStyles from './globalStyles';
 import styles from './styles';
 import Navbar from 'components/Navbar';
 import Link from 'next/link';
+import Router from 'next/router';
 
 // some custom styles for header wrapper
 const headerWrapperCss = css.resolve`
@@ -24,22 +25,24 @@ class Layout extends React.Component {
         <style jsx>{styles}</style>
         {headerWrapperCss.styles}
 
-        <header className="app-header">
-          <Wrapper className={headerWrapperCss.className}>
-            <Link href='/'>
-              <a>
-                <img
-                  className="app-logo"
-                  src="/static/upcloud-logo.svg"
-                  alt="UpCloud logo"
-                />
-              </a>
-            </Link>
-            <nav className="app-nav">
-              <Navbar />
-            </nav>
-          </Wrapper>
-        </header>
+        {Router.pathname !== '/login' && (
+          <header className="app-header">
+            <Wrapper className={headerWrapperCss.className}>
+              <Link href='/'>
+                <a>
+                  <img
+                    className="app-logo"
+                    src="/static/upcloud-logo.svg"
+                    alt="UpCloud logo"
+                  />
+                </a>
+              </Link>
+              <nav className="app-nav">
+                <Navbar />
+              </nav>
+            </Wrapper>
+          </header>
+        )}
 
         <Wrapper>{children}</Wrapper>
 

@@ -6,9 +6,7 @@ import { request } from 'api/apiClient';
 
 async function getStorages() {
   const response = await request({ method: 'get', url: '/storage' });
-  console.log(response);
-
-  const storages = response.data.storages.storage;
+  const storages = response.data ? response.data.storages.storage : null;
   return { data: storages, error: null, status: response.status };
 }
 

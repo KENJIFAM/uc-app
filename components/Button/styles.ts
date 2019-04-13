@@ -13,13 +13,15 @@ export default css`
     cursor: pointer;
     display: inline-flex;
     font-family: inherit;
-    font-size: rem(14px);
+    font-size: 17px;
+    font-weight: bold;
     letter-spacing: rem(0.6px);
-    height: rem(39px);
+    height: rem(48px);
     margin: 0;
     padding: rem(9px) rem(28px);
     position: relative;
     text-decoration: none;
+    color: color(grey, lightest);
 
     &:hover  {
       text-decoration: none;
@@ -35,13 +37,13 @@ export default css`
 
     &--primary {
       background-color: accent(mainAccentColor);
-      color: color(white, base, false);
+      color: color(grey, lightest);
 
       &:hover,
       &:focus,
       &:active {
         background-color: color(black);
-        color: color(white);
+        color: color(grey, lightest);
       }
     }
 

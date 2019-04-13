@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from './styles';
 import { withRouter, RouterProps } from 'next/router';
-// import Button from 'components/Button';
+import Button from 'components/Button';
+import { logout } from 'utils/auth';
 
 const Navbar = withRouter<{router: RouterProps}>(props => {
   const [toggle, setToggle] = useState<boolean>(false);
@@ -10,22 +11,34 @@ const Navbar = withRouter<{router: RouterProps}>(props => {
   const navList = (onClick: (() => void) | undefined = undefined) => (
     <>
       <style jsx>{styles}</style>
-      <Link href='/'>
-        <a
-          className={props.router.pathname === '/' ? 'active' : ''}
-          onClick={onClick}
-        >
-          Servers
-        </a>
-      </Link>
-      <Link href='/storages'>
-        <a
-          className={props.router.pathname === '/storages' ? 'active' : ''}
-          onClick={onClick}
-        >
-          Storages
-        </a>
-      </Link>
+      <div className='menu'>
+        <Link href='/'>
+          <a
+            className={props.router.pathname === '/' ? 'active' : ''}
+            onClick={onClick}
+          >
+            Servers
+          </a>
+        </Link>
+        <Link href='/storages'>
+          <a
+            className={props.router.pathname === '/storages' ? 'active' : ''}
+            onClick={onClick}
+          >
+            Storages
+          </a>
+        </Link>
+      </div>
+      <div className='sign-out'>
+        <Link href='/login'>
+          <Button onClick={() => {
+            setToggle(!toggle);
+            logout();
+          }}>
+            Sign out
+          </Button>
+        </Link>
+      </div>
     </>
   );
 
@@ -34,7 +47,9 @@ const Navbar = withRouter<{router: RouterProps}>(props => {
       <style jsx>{styles}</style>
       <div className={`side-panel${toggle ? ' responsive' : ''}`}>
         <a className='close-btn' onClick={() => setToggle(!toggle)}>×</a>
-        {navList(() => setToggle(!toggle))}
+        <div className='content'>
+          {navList(() => setToggle(!toggle))}
+        </div>
       </div>
       <div className='navbar'>
         {navList()}
