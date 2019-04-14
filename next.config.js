@@ -36,4 +36,12 @@ module.exports = withTypescript({
 
     return config;
   },
+  // export static html folder
+  exportPathMap: function() {
+    return {
+      '/': { page: '/' },
+      '/login': { page: '/login' },
+      '/storages': { page: '/storages' }
+    }
+  }
 });
