@@ -16,7 +16,8 @@ after_success:
   - docker build -t $DOCKER_ID/uc-app .
   - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push $DOCKER_ID/uc-app
-  - echo "$SERVER_PW" | ssh $SERVER_HOST --password-stdin
+  - apt-get install sshpass
+  - sshpass -p "$SERVER_PW" ssh $SERVER_HOST
 
 deploy:
   provider: script
