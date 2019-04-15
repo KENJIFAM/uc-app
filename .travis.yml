@@ -18,10 +18,4 @@ after_success:
   - docker push $DOCKER_ID/uc-app
   - sudo apt-get update
   - sudo apt-get install sshpass
-
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: bash ./deploy.sh
-  on:
-    branch: deploy-test
+  - sshpass -p "$SERVER_PW" ssh $SERVER_HOST 'bash -s' < ./deploy.sh
