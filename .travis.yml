@@ -12,5 +12,6 @@ before_install:
   - eval 'ssh-agent -s'
   - chmod 600 deploy_key
   - ssh-add deploy_key
+  - chmod +x ./deploy.sh
   - scp -o StrictHostKeyChecking=no ./deploy.sh $SERVER_USER@$SERVER_IP:/root
   - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP ./deploy.sh
