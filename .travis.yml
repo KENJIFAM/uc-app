@@ -16,4 +16,4 @@ before_install:
 install:
   - echo '$SERVER_IP' >> $HOME/.ssh/known_hosts
   - cat $HOME/.ssh/known_hosts
-  - ssh $SERVER_USER@$SERVER_IP 'mkdir hello'
+  - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP 'mkdir hello'
