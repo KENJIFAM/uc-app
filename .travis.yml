@@ -12,8 +12,4 @@ before_install:
   - eval 'ssh-agent -s'
   - chmod 600 deploy_key
   - ssh-add deploy_key
-
-install:
-  - echo '$SERVER_IP' >> $HOME/.ssh/known_hosts
-  - cat $HOME/.ssh/known_hosts
-  - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP 'mkdir hello'
+  - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP 'bash ./deploy.sh'
