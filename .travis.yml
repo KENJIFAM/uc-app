@@ -1,0 +1,26 @@
+sudo: required
+services:
+  - docker
+
+branches:
+  only:
+  - deploy-test
+
+before_install:
+  - docker build -t $DOCKER_ID/test -f ./Dockerfile.dev .
+
+script:
+  - docker run $DOCKER_ID/test npm test -- --coverage
+
+after_success:
+  - docker build -t $DOCKER_ID/uc-app .
+  - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push $DOCKER_ID/uc-app
+  - echo "$SERVER_PW" | ssh $SERVER_HOST --password-stdin
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: bash ./deploy.sh
+  on:
+    branch: deploy-test
