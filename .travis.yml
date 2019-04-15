@@ -15,4 +15,5 @@ before_install:
   - eval 'ssh-agent -s'
   - chmod 600 deploy_key
   - ssh-add deploy_key
+  - echo '$SERVER_IP' >> $HOME/.ssh/known_hosts
   - ssh $SERVER_USER@$SERVER_IP 'mkdir hello'
