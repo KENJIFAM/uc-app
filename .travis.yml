@@ -18,4 +18,5 @@ after_success:
   - docker push $DOCKER_ID/uc-app
   - sudo apt-get update
   - sudo apt-get install sshpass
-  - sshpass -p "$SERVER_PW" ssh $SERVER_HOST 'bash ./deploy.sh'
+  - export SSHPASS=$SERVER_PW
+  - sshpass -e ssh $SERVER_HOST 'touch hihi.txt'
