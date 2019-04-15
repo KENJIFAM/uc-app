@@ -18,7 +18,6 @@ after_success:
   - docker push $DOCKER_ID/uc-app
   - sudo apt-get update
   - sudo apt-get install sshpass
-  - sshpass -p "$SERVER_PW" ssh $SERVER_HOST
 
 deploy:
   provider: script
