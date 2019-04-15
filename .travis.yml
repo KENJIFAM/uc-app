@@ -6,17 +6,19 @@ branches:
   only:
   - deploy-test
 
-before_install:
-  - docker build -t $DOCKER_ID/test -f ./Dockerfile.dev .
+# before_install:
+#   - docker build -t $DOCKER_ID/test -f ./Dockerfile.dev .
+
+# script:
+#   - docker run $DOCKER_ID/test npm test -- --coverage
+
+# after_success:
+#   - docker build -t $DOCKER_ID/uc-app .
+#   - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
+#   - docker push $DOCKER_ID/uc-app
 
 script:
-  - docker run $DOCKER_ID/test npm test -- --coverage
-
-after_success:
-  - docker build -t $DOCKER_ID/uc-app .
-  - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push $DOCKER_ID/uc-app
   - sudo apt-get update
   - sudo apt-get install sshpass
   - export SSHPASS=$SERVER_PW
-  - sshpass -e ssh $SERVER_HOST 'touch hihi.txt'
+  - sshpass -e ssh $SERVER_USER@$SERVER_IP 'touch hihi.txt'
