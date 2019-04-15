@@ -12,6 +12,21 @@ before_install:
   - eval 'ssh-agent -s'
   - chmod 600 deploy_key
   - ssh-add deploy_key
+  - docker build -t $DOCKER_ID/test -f ./Dockerfile.dev .
+
+script:
+  - docker run $DOCKER_ID/test npm test -- --coverage
+
+after_success:
+  - docker build -t $DOCKER_ID/uc-app .
+  - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push $DOCKER_ID/uc-app
   - chmod 700 deploy.sh
   - scp -o StrictHostKeyChecking=no deploy.sh $SERVER_USER@$SERVER_IP:/root
-  - ssh $SERVER_USER@$SERVER_IP ./deploy.sh
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ssh $SERVER_USER@$SERVER_IP ./deploy.sh
+  on:
+    branch: deploy-test 
