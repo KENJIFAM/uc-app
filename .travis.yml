@@ -11,8 +11,8 @@ before_install:
     -in deploy_key.enc -out deploy_key -d
   - eval 'ssh-agent -s'
   - chmod 600 deploy_key
+  - ssh-keyscan -t $TRAVIS_SSH_KEY_TYPES -H $SERVER_IP 2>&1 | tee -a ${TRAVIS_HOME}/.ssh/known_hosts
   - ssh-add deploy_key
 
 install:
-  - echo '$SERVER_IP' >> ${TRAVIS_HOME}/.ssh/known_hosts
   - ssh $SERVER_USER@$SERVER_IP 'mkdir hello'
