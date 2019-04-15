@@ -1,0 +1,32 @@
+sudo: required
+services:
+  - docker
+
+branches:
+  only:
+    - master
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv
+    -in deploy_key.enc -out deploy_key -d
+  - eval 'ssh-agent -s'
+  - chmod 600 deploy_key
+  - ssh-add deploy_key
+  - docker build -t $DOCKER_ID/test -f ./Dockerfile.dev .
+
+script:
+  - docker run $DOCKER_ID/test npm test -- --coverage
+
+after_success:
+  - docker build -t $DOCKER_ID/uc-app .
+  - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push $DOCKER_ID/uc-app
+  - chmod 700 deploy.sh
+  - scp -o StrictHostKeyChecking=no deploy.sh $SERVER_USER@$SERVER_IP:/root
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ssh $SERVER_USER@$SERVER_IP ./deploy.sh
+  on:
+    branch: master
