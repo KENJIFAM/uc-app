@@ -7,8 +7,6 @@ branches:
   - deploy-test
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install sshpass
   - docker build -t $DOCKER_ID/test -f ./Dockerfile.dev .
 
 script:
@@ -18,7 +16,8 @@ after_success:
   - docker build -t $DOCKER_ID/uc-app .
   - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push $DOCKER_ID/uc-app
-  
+  - sudo apt-get update
+  - sudo apt-get install sshpass
   - sshpass -p "$SERVER_PW" ssh $SERVER_HOST
 
 deploy:
