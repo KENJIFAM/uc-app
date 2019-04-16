@@ -6,7 +6,7 @@ The home page shows a server list with each server's title, state (green = start
 
 Users can open the `Storages` page via the `Storages` link in the navbar. This page shows a simple list of storages with their title and size. Users can sort the list by title or size, filter the list to show public, private or all storages.
 
-### Getting Started
+## Getting Started
 
 Clone the repository in your Terminal and install the required packages with `yarn install` or `npm i`. Then run the app by one of the following ways:
 
@@ -20,7 +20,7 @@ Open http://localhost:3000 and you should see the login page.
 
 You can use the demo application at https://uc-app.kenjifam.fi.
 
-### Technology Stack
+## Technology Stack
 
 - Front-end: TypeScript, Next.js, React.js, styled-jsx, Sass/SCSS
 - Testing: Jest, Enzyme
@@ -28,11 +28,11 @@ You can use the demo application at https://uc-app.kenjifam.fi.
 - Web server: Nginx
 - Deploy: Docker, Upcloud Linux Server
 
-### Component Structure
+## Component Structure
 
 ![Component Structure](ComponentStructure.png)
 
-### CI strategy
+## CI strategy
 
 1. Build test image.
 2. Run tests.

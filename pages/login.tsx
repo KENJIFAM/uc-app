@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Login from 'components/Login';
-import withAuth from 'components/withAuth';
+// import withAuth from 'components/withAuth';
 
 const LoginPage = () => (
   <>
@@ -14,4 +14,4 @@ const LoginPage = () => (
   </>
 );
 
-export default withAuth(LoginPage);
+export default LoginPage;
