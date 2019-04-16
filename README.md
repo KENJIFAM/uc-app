@@ -1,67 +1,43 @@
 # UpCloud Frontend App
 
-Hi there! This package contains the UpCloud frontend technology stack and an 
-unfinished web app.
+The application is designed responsive for all devices. Users can login with username and password from Upcloud. User cannot access to the application without login.
 
-There are design mockups in the `design-mockups/` directory for the two pages
-that this app should show when finished. Please spend about 2-3 hours to explore
-the code, get the project running, and possibly write some code! Implement what
-you can in the time allotted :) We don't expect you to code the whole app,
-gathering some thoughts about the tech stack and how you would approach the
-problem is great as well!
+The home page shows a server list with each server's title, state (green = started, red = stopped, yellow = any other state), and hostname. Users can sort the list by title or hostname. Users can go back to the main page via the `Servers` link or the logo in the navbar. 
 
-The tech stack includes:
-
-- TypeScript
-- Next.js
-- React.js
-- styled-jsx
-- Sass/SCSS
-
-(note: UpCloud also uses Redux, but it was omitted here for simplicity)
-
-Let's be in touch and arrange a meet at UpCloud office where we can together go
-through your thoughts about everything you saw & did here :) We'd love to know
-what you thought about the tech stack and working on this!
-
-Lastly, we'd like to emphasize that 2-3 hours is good, as we don't want to take
-up too much of your valuable time at this point!
+Users can open the `Storages` page via the `Storages` link in the navbar. This page shows a simple list of storages with their title and size. Users can sort the list by title or size, filter the list to show public, private or all storages.
 
 ### Getting Started
 
-Replace the API username and password in `apiClient.ts` with the ones we
-supplied to you.
+Clone the repository in your Terminal and install the required packages with `yarn install` or `npm i`. Then run the app by one of the following ways:
 
-Install the required packages with `yarn install` or `npm i`.
+1. Start the dev server with `yarn dev` or `npm run dev`.
+2. Using docker: `docker build -t uc-app .` then `docker run -p 3000:80 uc-app`.
+3. Using docker-compose: `docker-compose up --build`.
 
-Start the dev server with `yarn dev` or `npm run dev`
+Or using a ready docker image with `docker run -p 3000:80 kenjifam/uc-app`.
 
-Open http://localhost:3000 and you should see the app homepage!
+Open http://localhost:3000 and you should see the login page.
 
-If you are having any problems, please do not hesitate to contact us!
+You can use the demo application at https://uc-app.kenjifam.fi.
 
-### About the Mockups
+### Technology Stack
 
-The `1-servers-page.png` shows a mockup of the "Servers" page. Users can access
-this page via the link at the top-right corner. The page shows a server list
-with each server's title, state (green = started, red = stopped, yellow = any
-other state), and hostname.
+- Front-end: TypeScript, Next.js, React.js, styled-jsx, Sass/SCSS
+- Testing: Jest, Enzyme
+- CI: Travis CI
+- Web server: Nginx
+- Deploy: Docker, Upcloud Linux Server
 
-At the top-right corner, you can see the "Storages"-link to open the "Storages"
-page. The `2-storages-page.png` shows a mockup of the "Storages" page. This is 
-just a simple list of storages with their title and size.
+### Component Structure
 
-### Hints & Tips
+![Component Structure](ComponentStructure.png)
 
-**Don't want TypeScript?** Use .js files and TypeScript will ignore typings.
-You can also rename the existing template files to .js if you feel like it.
+### CI strategy
 
-We are more than happy to see you add your own flair! For example making UX
-better, adding loading states, skeleton screens, error states, unit tests,
-responsive design, routing, ...
-
-### Returns
-
-Feel free to post this code in GitHub, GitLab, Bitbucket or any service of your
-choosing. You can also e.g. upload the code as a zip somewhere. Send us the link
-to the code in an email when you're done!
+1. Build test image.
+2. Run tests.
+3. Build production image.
+4. Push image on docker hub.
+5. Copy deploy script to Upcloud server.
+6. Login Upcloud server by ssh and run deploy script.
+7. The Upcloud server stops the container, pulls the new image from docker hub then runs the container again in background.

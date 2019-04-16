@@ -15,6 +15,8 @@ const withAuth = (AuthComponent: React.ReactType) => {
     componentDidMount() {
       if (!loggedIn()) {
         Router.push('/login');
+      } else if (Router.pathname === '/login') {
+        Router.push('/');
       }
       this.setState({
         isLoading: false

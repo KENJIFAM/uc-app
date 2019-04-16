@@ -11,11 +11,15 @@ const styles = css`
 
   .app-header {
     background: #fff;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
+
+    @media (min-width: 400px) {
+      padding: 1rem 0;
+    }
   }
 
   .app-logo {
-    width: 100px;
+    width: 180px;
 
     @media (min-width: 400px) {
       width: 200px;
