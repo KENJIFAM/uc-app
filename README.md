@@ -18,8 +18,6 @@ Or using a ready docker image with `docker run -p 3000:80 kenjifam/uc-app`.
 
 Open http://localhost:3000 and you should see the login page.
 
-You can use the demo application at https://uc-app.kenjifam.fi.
-
 ## Technology Stack
 
 - Front-end: TypeScript, Next.js, React.js, styled-jsx, Sass/SCSS
